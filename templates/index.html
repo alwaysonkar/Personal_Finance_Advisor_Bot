@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Finance Advisor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <i class="fa-solid fa-chart-pie logo"></i>
+      <div>
+        <h1>Finance Advisor</h1>
+        <p>Tell it what you earn and spend. Get a budget and ways to save.</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <form id="finance-form" class="panel" novalidate>
+      <h2>Your month</h2>
+
+      <label class="income">
+        Monthly income (₹)
+        <input type="number" id="income" min="1" placeholder="50000" required>
+      </label>
+
+      <h3>Expenses (₹)</h3>
+      <div class="grid">
+        <label><span><i class="fa-solid fa-house"></i> Rent</span><input type="number" min="0" data-cat="rent" placeholder="0"></label>
+        <label><span><i class="fa-solid fa-utensils"></i> Food</span><input type="number" min="0" data-cat="food" placeholder="0"></label>
+        <label><span><i class="fa-solid fa-bus"></i> Transport</span><input type="number" min="0" data-cat="transport" placeholder="0"></label>
+        <label><span><i class="fa-solid fa-burger"></i> Dining out</span><input type="number" min="0" data-cat="dining" placeholder="0"></label>
+        <label><span><i class="fa-solid fa-film"></i> Entertainment</span><input type="number" min="0" data-cat="entertainment" placeholder="0"></label>
+        <label><span><i class="fa-solid fa-bolt"></i> Utilities</span><input type="number" min="0" data-cat="utilities" placeholder="0"></label>
+        <label><span><i class="fa-solid fa-piggy-bank"></i> Savings</span><input type="number" min="0" data-cat="savings" placeholder="0"></label>
+      </div>
+
+      <label class="goal">
+        What are you saving for?
+        <select id="goal">
+          <option value="emergency fund">Emergency fund</option>
+          <option value="vacation">Vacation</option>
+          <option value="gadget purchase">Gadget purchase</option>
+          <option value="investment">Investment</option>
+        </select>
+      </label>
+
+      <p id="error" class="error" role="alert" hidden></p>
+
+      <button type="submit" id="submit-btn">
+        <span class="label">Analyse my finances</span>
+        <span class="spinner" hidden></span>
+      </button>
+    </form>
+
+    <section id="results" hidden>
+      <div id="summary" class="summary"></div>
+
+      <h2>Suggested budget</h2>
+      <div id="budget" class="budget"></div>
+
+      <h2>How you're spending</h2>
+      <div id="analysis" class="chips"></div>
+
+      <h2><i class="fa-solid fa-piggy-bank"></i> Ways to save</h2>
+      <ol id="suggestions" class="panel suggestions"></ol>
+    </section>
+  </main>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
